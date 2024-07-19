@@ -34,15 +34,9 @@ onMounted(async (): Promise<void> => {
 .home-container {
     font-family: var(--font-family);
     background-color: var(--very-light-gray);
-
-    .country-card {
-        h3 {
-            font-weight: var(--font-weight-bold);
-        }
-
-        p {
-            font-weight: var(--font-weight-light);
-        }
-    }
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+    gap: 72px;
 }
 </style>
