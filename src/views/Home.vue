@@ -1,4 +1,5 @@
 <template>
+    <button @click="toggleDarkMode">Dark Mode</button>
     <div class="home-container">
         <CountryCard v-for="country in countries" :key="country.alpha3Code" :country="country" />
     </div>
@@ -12,6 +13,13 @@ import type { Country } from '@/types/types';
 
 const countries = ref<Country[]>([]);
 
+const isDarkMode = ref(false);
+
+const toggleDarkMode = () => {
+    isDarkMode.value = !isDarkMode.value;
+    document.documentElement.setAttribute('data-theme', isDarkMode.value ? 'dark' : 'light');
+};
+
 onMounted(async (): Promise<void> => {
     try {
         const response = await api.get('/all');
@@ -22,4 +30,13 @@ onMounted(async (): Promise<void> => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.home-container {
+    font-family: var(--font-family);
+    background-color: var(--very-light-gray);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+    gap: 72px;
+}
+</style>

@@ -25,4 +25,37 @@ const props = defineProps({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.country-card {
+    background-color: var(--white);
+    box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .country-flag {
+        height: 160px;
+        width: 100%;
+        object-fit: cover;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .country-info {
+        padding: 24px;
+    }
+
+    h3 {
+        margin-bottom: 16px;
+        font-weight: var(--font-weight-bold);
+    }
+
+    p {
+        font-size: var(--homepage-item-size);
+        font-weight: var(--font-weight-light);
+    }
+}
+</style>
