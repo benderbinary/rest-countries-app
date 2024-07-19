@@ -20,7 +20,7 @@
       "@/*": ["./*"]
     }
   },
-  "lib": ["ES2015", "DOM", "DOM.Iterable"],
+  "lib": ["ES2020", "DOM", "DOM.Iterable"],
   "include": ["vite-env.d.ts", "src/**/*", "src/**/*.vue"],
   "references": [
     {

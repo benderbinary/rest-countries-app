@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { PropType } from "vue";
 
-defineProps({
+const props = defineProps({
     country: {
         type: Object as PropType<any>,
         required: true,
