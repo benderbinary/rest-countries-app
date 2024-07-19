@@ -25,4 +25,13 @@ const props = defineProps({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.country-card {
+    background-color: var(--white);
+    box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.03);
+
+    .country-flag {}
+
+    .country-info {}
+}
+</style>
