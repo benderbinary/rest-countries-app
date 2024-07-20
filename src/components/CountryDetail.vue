@@ -23,12 +23,12 @@
                     </div>
                 </div>
 
-                <div class="border-countries" v-if="country.borders.length">
+                <div class="border-countries" v-if="country.borders && country.borders.length > 0">
                     <h3>Border Countries:</h3>
                     <div class="border-country-tags">
-                        <router-link v-for="border in country.borders" :key="border"
-                            :to="{ name: 'CountryView', params: { code: border } }" class="border-country-tag">
-                            {{ borderName(border) }}
+                        <router-link v-for="borderCode in country.borders" :key="borderCode"
+                            :to="{ name: 'CountryView', params: { code: borderCode } }" class="border-country-tag">
+                            {{ borderName(borderCode) }}
                         </router-link>
                     </div>
                 </div>
