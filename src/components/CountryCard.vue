@@ -15,14 +15,18 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
-
-const props = defineProps({
+const { country } = defineProps<{
     country: {
-        type: Object as PropType<any>,
-        required: true,
-    },
-});
+        flags: {
+            png: string;
+        },
+        name: string;
+        population: number;
+        region: string;
+        capital: string;
+        alpha3Code: string;
+    };
+}>();
 </script>
 
 <style scoped>

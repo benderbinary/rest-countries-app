@@ -1,6 +1,6 @@
 <template>
     <Navbar />
-    <!-- <button @click="toggleDarkMode">Dark Mode</button> -->
+
     <div class="home-container">
         <div class="search-filter-container">
             <div class="search-container">
@@ -32,7 +32,6 @@ const store = useCountriesStore();
 const { searchQuery, selectedRegion, regions } = storeToRefs(store);
 
 const { filteredCountries } = storeToRefs(store);
-
 store.fetchCountries();
 
 const handleSearch = () => {
@@ -44,16 +43,6 @@ const handleFilter = () => {
 };
 
 const countries = ref<Country[]>([]);
-
-const isDarkMode = ref(false);
-
-const toggleDarkMode = () => {
-    isDarkMode.value = !isDarkMode.value;
-    document.documentElement.setAttribute(
-        "data-theme",
-        isDarkMode.value ? "dark" : "light"
-    );
-};
 
 onMounted(async (): Promise<void> => {
     try {

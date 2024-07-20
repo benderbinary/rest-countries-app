@@ -7,7 +7,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
