@@ -4,6 +4,7 @@
     <div class="home-container">
         <div class="search-filter-container">
             <div class="search-container">
+                <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="search-icon" />
                 <input type="text" placeholder="Search for a country..." v-model="searchQuery" @input="handleSearch" />
             </div>
 
@@ -59,6 +60,10 @@ onMounted(async (): Promise<void> => {
     font-family: var(--font-family);
     background-color: var(--very-light-gray);
     padding: 40px;
+    /* As per style guide */
+    font-size: 14px;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .search-filter-container {

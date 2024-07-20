@@ -82,6 +82,10 @@ const borderName = (code: string) => {
     display: flex;
     flex-direction: column;
     padding: 40px 80px;
+    /* As per style guide */
+    font-size: 16px;
+    max-width: 1440px;
+    margin: 0 auto;
 
     @media (max-width: 768px) {
         padding: 20px;
@@ -133,7 +137,7 @@ const borderName = (code: string) => {
         }
 
         h2 {
-            font-size: 22px;
+            font-size: 1.5em;
             margin-bottom: 24px;
             font-weight: var(--font-weight-bold);
         }
