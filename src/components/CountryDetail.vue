@@ -74,6 +74,8 @@ const borderName = (code: string) => {
 </script>
 
 <style scoped>
+@import '@/styles/theme.scss';
+
 .country-detail {
     display: flex;
     flex-direction: column;
@@ -83,7 +85,21 @@ const borderName = (code: string) => {
         padding: 20px;
     }
 
-    .back-button {}
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        background: none;
+        border: none;
+        padding: 0;
+        color: var(--text-color);
+        font-weight: var(--font-weight-regular);
+        cursor: pointer;
+
+        img {
+            width: 20px;
+            margin-right: 8px;
+        }
+    }
 
     .country-content {
         display: flex;
@@ -98,6 +114,7 @@ const borderName = (code: string) => {
         width: 560px;
         height: 401px;
         object-fit: cover;
+        border-radius: 10px;
 
         @media (max-width: 768px) {
             width: 100%;
@@ -128,6 +145,8 @@ const borderName = (code: string) => {
         }
 
         .detail-group {
+            flex: 1;
+
             &:first-child {
                 margin-right: 145px;
             }
@@ -146,20 +165,34 @@ const borderName = (code: string) => {
             line-height: 1.5;
             margin-bottom: 10px;
 
-            span {
-                font-weight: var(--font-weight-bold);
-            }
-        }
-
-        .border-countries {
-            margin-top: 72px;
-
-            h3 {
-                font-weight: var(--font-weight-bold);
-                margin-bottom: 16px;
+            span.label {
+                font-weight: var(--font-weight-regular);
             }
         }
     }
 
+    .border-countries {
+        margin-top: 72px;
+
+        h3 {
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 16px;
+        }
+
+        .border-country-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .border-country-tag {
+            background-color: var(--white);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+    }
 }
 </style>
