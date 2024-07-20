@@ -15,8 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
-
 const { country } = defineProps<{
     country: {
         flags: {
