@@ -1,4 +1,5 @@
 <template>
+    <Navbar />
     <div v-if="country" class="country-detail">
         <button class="back-button" @click="$router.back()">
             <!-- <img src="@/assets/arrow-left.svg" alt="Back Arrow" /> --> Back
@@ -42,6 +43,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import api from '@/services/api';
 import type { Country } from '@/types/types';
+import Navbar from "@/components/Navbar.vue";
 
 const route = useRoute();
 const country = ref<Country | null>(null);
