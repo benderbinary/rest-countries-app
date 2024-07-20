@@ -1,11 +1,3 @@
 {
-  "include": ["vite-env.d.ts", "src/**/*", "src/**/*.vue"],
-  "extends": "./tsconfig.app.json",
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "lib": ["ES2015", "DOM"] // add ES2015 here
+  "extends": "./tsconfig.app.json"
 }
