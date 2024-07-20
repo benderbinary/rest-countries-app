@@ -100,8 +100,9 @@ onUnmounted(() => {
 
 .country-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
     gap: 72px;
+    justify-content: start;
 }
 
 .search-container {
