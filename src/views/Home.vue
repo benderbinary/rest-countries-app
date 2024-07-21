@@ -154,6 +154,7 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-right: 2rem;
 }
 
 .sort-by-container {
@@ -291,7 +292,7 @@ onUnmounted(() => {
     }
 
     .search-container {
-        width: 95%;
+        width: 83%;
         margin-bottom: 1rem;
     }
 
