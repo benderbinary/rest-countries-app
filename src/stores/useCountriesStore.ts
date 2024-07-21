@@ -9,7 +9,8 @@ export const useCountriesStore = defineStore('countries', {
         searchQuery: '',
         selectedRegion: '',
         regions: [] as string[],
-        isLoading: true
+        isLoading: true,
+        sortBy: '' as 'name' | 'population' | ''
     }),
     getters: {
         filteredCountries: (state) => {
@@ -25,6 +26,12 @@ export const useCountriesStore = defineStore('countries', {
                     (country) => country.region === state.selectedRegion
                 );
             }
+
+            if (state.sortBy === 'name') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (state.sortBy === 'population') {
+                filtered.sort((a, b) => b.population - a.population);
+            }
             return filtered;
         },
     },
@@ -32,9 +39,9 @@ export const useCountriesStore = defineStore('countries', {
         async fetchCountries() {
             this.isLoading = true;
             try {
-                const response = await api.get('/all');
+                const response = await api.get<Country[]>('/all');
                 this.allCountries = response.data;
-                this.regions = Array.from(new Set(response.data.map((country: { region: any; }) => country.region)));
+                this.regions = ['All', ...Array.from(new Set(response.data.map(country => country.region)))];
             } catch (error) {
                 console.error('Error fetching countries:', error);
             } finally {
@@ -46,7 +53,10 @@ export const useCountriesStore = defineStore('countries', {
         },
         setSelectedRegion(region: string) {
             this.selectedRegion = region;
-        }
+        },
+        setSortBy(sortBy: 'name' | 'population' | '') {
+            this.sortBy = sortBy;
+        },
     }
 });
 
