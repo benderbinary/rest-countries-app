@@ -203,7 +203,7 @@ onUnmounted(() => {
     .select-options,
     input[type="text"],
     .custom-select {
-        background-color: var(--very-dark-blue-elements);
+        background-color: var(--dark-blue-elements);
         color: var(--white);
     }
 

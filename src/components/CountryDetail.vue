@@ -95,6 +95,7 @@ const borderName = (code: string) => {
         background: none;
         border: none;
         padding: 0;
+        background-color: var(--white);
         color: var(--text-color);
         font-weight: var(--font-weight-regular);
         cursor: pointer;
@@ -197,6 +198,23 @@ const borderName = (code: string) => {
             text-decoration: none;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
+    }
+}
+
+[data-theme='dark'] {
+    .border-country-tag {
+        background-color: var(--dark-blue-elements) !important;
+        color: var(--white) !important;
+    }
+
+    .back-button {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        background-color: var(--dark-blue-elements) !important;
+        color: var(--white) !important;
+        width: 4rem;
     }
 }
 </style>
