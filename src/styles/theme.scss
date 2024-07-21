@@ -3,34 +3,23 @@
 body {
   font-family: var(--font-family);
   background-color: var(--very-light-gray);
-}
-
-:root {
+  --font-family: 'Nunito Sans', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 600;
+  --font-weight-bold: 800;
+  --homepage-item-size: 14px; 
   --dark-blue-elements: hsl(209, 23%, 22%);
   --very-dark-blue-background: hsl(207, 26%, 17%);
   --very-dark-blue-text: hsl(200, 15%, 8%);
   --dark-gray: hsl(0, 0%, 52%);
   --very-light-gray: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
-
-  --font-family: 'Nunito Sans', sans-serif;
-  --font-weight-light: 300;
-  --font-weight-regular: 600;
-  --font-weight-bold: 800;
-  --homepage-item-size: 14px; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 [data-theme='dark'] {
-  --dark-blue-elements: hsl(0, 0%, 100%);
-  --very-dark-blue-background: hsl(209, 23%, 22%);
-  --very-dark-blue-text: hsl(0, 0%, 100%);
-  --dark-gray: hsl(0, 0%, 52%);
-  --very-light-gray: hsl(209, 23%, 22%);
-  --white: hsl(209, 23%, 22%);
-  
-  --font-family: 'Nunito Sans', sans-serif;
-  --font-weight-light: 300;
-  --font-weight-regular: 600;
-  --font-weight-bold: 800;
-  --homepage-item-size: 14px; 
+  body {
+    background-color: var(--very-dark-blue-background);
+    color: var(--white);  
+  }
 }
