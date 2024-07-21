@@ -1,7 +1,9 @@
 <template>
     <nav class="navbar">
         <div class="container">
-            <h1 class="logo">Where in the world?</h1>
+            <router-link to="/" class="logo">
+                <h1 class="logo">Where in the world?</h1>
+            </router-link>
             <button @click="toggleDarkMode" class="dark-mode-toggle">
                 <font-awesome-icon :icon="['fas', isDarkMode ? 'sun' : 'moon']" />
                 {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
@@ -53,7 +55,9 @@ watch(isDarkMode, (newTheme) => {
 
     .logo {
         font-weight: var(--font-weight-bold);
-        font-size: 1rem;
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: var(--very-dark-blue-text);
     }
 
     .back-button {
@@ -83,6 +87,10 @@ watch(isDarkMode, (newTheme) => {
     .navbar {
         background-color: var(--dark-blue-elements);
         color: var(--white);
+
+        .logo {
+            color: var(--white);
+        }
     }
 }
 </style>
