@@ -8,6 +8,7 @@ export const useCountriesStore = defineStore('countries', {
         searchQuery: '',
         selectedRegion: '',
         regions: [] as string[],
+        isLoading: true
     }),
     getters: {
         filteredCountries: (state) => {
@@ -24,9 +25,16 @@ export const useCountriesStore = defineStore('countries', {
     },
     actions: {
         async fetchCountries() {
-            const response = await api.get('/all');
-            this.allCountries = response.data;
-            this.regions = Array.from(new Set(response.data.map((country: { region: any; }) => country.region)));
+            this.isLoading = true; // Set isLoading to true before fetching
+            try {
+                const response = await api.get('/all');
+                this.allCountries = response.data;
+                this.regions = Array.from(new Set(response.data.map((country: { region: any; }) => country.region)));
+            } catch (error) {
+                console.error('Error fetching countries:', error);
+            } finally {
+                this.isLoading = false;
+            }
         },
         setSearchQuery(query: string) {
             this.searchQuery = query;

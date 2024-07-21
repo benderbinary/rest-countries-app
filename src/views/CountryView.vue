@@ -5,7 +5,7 @@
                 :key="(route.params.code as string)" />
         </template>
         <template #fallback>
-            <div>loading</div>
+            <LoadingComponent />
         </template>
     </Suspense>
 </template>
@@ -16,6 +16,7 @@ import { useRoute } from 'vue-router';
 import api from '@/services/api';
 import type { Country } from '@/types/types';
 import CountryDetail from '@/components/CountryDetail.vue';
+import LoadingComponent from '@/components/LoadingComponent.vue';
 
 const route = useRoute();
 const country = ref<Country | null>(null);

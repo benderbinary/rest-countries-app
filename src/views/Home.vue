@@ -1,6 +1,7 @@
 <template>
     <Navbar />
-    <div class="home-container">
+    <LoadingComponent v-if="isLoading" />
+    <div v-else class="home-container">
         <div class="search-filter-container">
             <div class="search-container">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="search-icon" />
@@ -33,22 +34,21 @@ import CountryCard from "@/components/CountryCard.vue";
 import api from "@/services/api";
 import type { Country } from "@/types/types";
 import Navbar from "@/components/Navbar.vue";
+import LoadingComponent from "@/components/LoadingComponent.vue";
 import { storeToRefs } from "pinia";
 import { useCountriesStore } from "@/stores/useCountriesStore";
 
 const store = useCountriesStore();
-const { searchQuery, selectedRegion, regions } = storeToRefs(store);
-const { filteredCountries } = storeToRefs(store);
+const { searchQuery, selectedRegion, regions, filteredCountries, isLoading } = storeToRefs(store);
+const countries = ref<Country[]>([]);
+const isOpen = ref(false);
+const selectWrapper = ref<HTMLElement | null>(null);
 
 store.fetchCountries();
 
 const handleSearch = () => {
     store.setSearchQuery(searchQuery.value);
 };
-
-const countries = ref<Country[]>([]);
-const isOpen = ref(false);
-const selectWrapper = ref<HTMLElement | null>(null);
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
@@ -65,15 +65,14 @@ const handleClickOutside = (event: MouseEvent) => {
     }
 };
 
-onMounted(async () => {
+onMounted(async (): Promise<void> => {
     try {
-        const response = await api.get("/all");
+        const response = await api.get('/all');
         countries.value = response.data;
+        isLoading.value = false;
     } catch (error) {
-        console.error("Error fetching countries:", error);
+        console.error('Error fetching countries:', error);
     }
-
-    document.addEventListener('click', handleClickOutside);
 });
 
 onUnmounted(() => {
@@ -84,7 +83,6 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .home-container {
     font-family: var(--font-family);
-    background-color: var(--very-light-gray);
     padding: 40px;
     font-size: 14px;
     max-width: 1440px;
