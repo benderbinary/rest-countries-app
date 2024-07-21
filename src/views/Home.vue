@@ -172,7 +172,7 @@ onUnmounted(() => {
     .select-options {
         position: absolute;
         top: 100%;
-        left: -4rem;
+        left: 0rem;
         right: 0;
         background-color: var(--white);
         border-bottom-left-radius: 5px;

@@ -30,7 +30,7 @@ export const useCountriesStore = defineStore('countries', {
     },
     actions: {
         async fetchCountries() {
-            this.isLoading = true; // Set isLoading to true before fetching
+            this.isLoading = true;
             try {
                 const response = await api.get('/all');
                 this.allCountries = response.data;
