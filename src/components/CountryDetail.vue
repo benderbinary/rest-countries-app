@@ -11,16 +11,16 @@
                 <h2>{{ country.name }}</h2>
                 <div class="detail-groups">
                     <div class="detail-group">
-                        <p><span>Native Name:</span> {{ country.nativeName }}</p>
-                        <p><span>Population:</span> {{ country.population.toLocaleString() }}</p>
-                        <p><span>Region:</span> {{ country.region }}</p>
-                        <p><span>Sub Region:</span> {{ country.subregion }}</p>
-                        <p><span>Capital:</span> {{ country.capital }}</p>
+                        <p><strong>Native Name:</strong> {{ country.nativeName }}</p>
+                        <p><strong>Population:</strong> {{ country.population.toLocaleString() }}</p>
+                        <p><strong>Region:</strong> {{ country.region }}</p>
+                        <p><strong>Sub Region:</strong> {{ country.subregion }}</p>
+                        <p><strong>Capital:</strong> {{ country.capital }}</p>
                     </div>
                     <div class="detail-group">
-                        <p><span>Top Level Domain:</span> {{ country.topLevelDomain.join(', ') }}</p>
-                        <p><span>Currencies:</span> {{ country.currencies.map(c => c.name).join(', ') }}</p>
-                        <p><span>Languages:</span> {{ country.languages.map(l => l.name).join(', ') }}</p>
+                        <p><strong>Top Level Domain:</strong> {{ country.topLevelDomain.join(', ') }}</p>
+                        <p><strong>Currencies:</strong> {{ country.currencies.map(c => c.name).join(', ') }}</p>
+                        <p><strong>Languages:</strong> {{ country.languages.map(l => l.name).join(', ') }}</p>
                     </div>
                 </div>
 
