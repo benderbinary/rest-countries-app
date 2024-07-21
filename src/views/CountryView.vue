@@ -1,6 +1,13 @@
 <template>
-    <CountryDetail v-if="country" :country="country" :border-countries="borderCountriesData"
-        :key="(route.params.code as string)" />
+    <Suspense>
+        <template #default>
+            <CountryDetail v-if="country" :country="country" :border-countries="borderCountriesData"
+                :key="(route.params.code as string)" />
+        </template>
+        <template #fallback>
+            <LoadingComponent />
+        </template>
+    </Suspense>
 </template>
 
 <script setup lang="ts">
@@ -9,6 +16,7 @@ import { useRoute } from 'vue-router';
 import api from '@/services/api';
 import type { Country } from '@/types/types';
 import CountryDetail from '@/components/CountryDetail.vue';
+import LoadingComponent from '@/components/LoadingComponent.vue';
 
 const route = useRoute();
 const country = ref<Country | null>(null);

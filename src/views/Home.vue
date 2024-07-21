@@ -1,6 +1,7 @@
 <template>
     <Navbar />
-    <div class="home-container">
+    <LoadingComponent v-if="isLoading" />
+    <div v-else class="home-container">
         <div class="search-filter-container">
             <div class="search-container">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="search-icon" />
@@ -9,7 +10,7 @@
 
             <div class="select-wrapper" ref="selectWrapper">
                 <div class="custom-select" @click="toggleDropdown" :class="{ 'open': isOpen }">
-                    <span>{{ selectedRegion || 'Filter by Region' }}</span>
+                    <span class="select-item">{{ selectedRegion || 'Filter by Region' }}</span>
                     <font-awesome-icon :icon="['fas', 'chevron-down']" class="select-icon"
                         :class="{ 'rotated': isOpen }" />
                 </div>
@@ -33,22 +34,21 @@ import CountryCard from "@/components/CountryCard.vue";
 import api from "@/services/api";
 import type { Country } from "@/types/types";
 import Navbar from "@/components/Navbar.vue";
+import LoadingComponent from "@/components/LoadingComponent.vue";
 import { storeToRefs } from "pinia";
 import { useCountriesStore } from "@/stores/useCountriesStore";
 
 const store = useCountriesStore();
-const { searchQuery, selectedRegion, regions } = storeToRefs(store);
-const { filteredCountries } = storeToRefs(store);
+const { searchQuery, selectedRegion, regions, filteredCountries, isLoading } = storeToRefs(store);
+const countries = ref<Country[]>([]);
+const isOpen = ref(false);
+const selectWrapper = ref<HTMLElement | null>(null);
 
 store.fetchCountries();
 
 const handleSearch = () => {
     store.setSearchQuery(searchQuery.value);
 };
-
-const countries = ref<Country[]>([]);
-const isOpen = ref(false);
-const selectWrapper = ref<HTMLElement | null>(null);
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
@@ -65,15 +65,14 @@ const handleClickOutside = (event: MouseEvent) => {
     }
 };
 
-onMounted(async () => {
+onMounted(async (): Promise<void> => {
     try {
-        const response = await api.get("/all");
+        const response = await api.get('/all');
         countries.value = response.data;
+        isLoading.value = false;
     } catch (error) {
-        console.error("Error fetching countries:", error);
+        console.error('Error fetching countries:', error);
     }
-
-    document.addEventListener('click', handleClickOutside);
 });
 
 onUnmounted(() => {
@@ -84,7 +83,6 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .home-container {
     font-family: var(--font-family);
-    background-color: var(--very-light-gray);
     padding: 40px;
     font-size: 14px;
     max-width: 1440px;
@@ -131,13 +129,15 @@ onUnmounted(() => {
     position: relative;
     width: 200px;
 
+    .select-item {
+        margin-left: 1em;
+    }
+
     .custom-select {
         width: 100%;
         background-color: var(--white);
         border: none;
-        padding: 0.75rem 1.5rem;
-        padding-right: 2.5rem;
-        margin-left: -4rem;
+        padding: 0.75rem 0rem;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         font-family: var(--font-family);
@@ -154,6 +154,7 @@ onUnmounted(() => {
 
     .select-icon {
         transition: transform 0.3s ease;
+        margin-right: 1em;
 
         &.rotated {
             transform: rotate(180deg);
