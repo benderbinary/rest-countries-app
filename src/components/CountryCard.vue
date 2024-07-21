@@ -42,7 +42,7 @@ const { country } = defineProps<{
     }
 
     .country-flag {
-        height: 160px;
+        aspect-ratio: 4 / 3;
         width: 100%;
         object-fit: cover;
         border-top-left-radius: 5px;
