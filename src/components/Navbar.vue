@@ -57,7 +57,7 @@ watch(isDarkMode, (newTheme) => {
         font-weight: var(--font-weight-bold);
         font-size: 1.5rem;
         text-decoration: none;
-        color: var(--white);
+        color: var(--very-dark-blue-text);
     }
 
     .back-button {
@@ -87,6 +87,10 @@ watch(isDarkMode, (newTheme) => {
     .navbar {
         background-color: var(--dark-blue-elements);
         color: var(--white);
+
+        .logo {
+            color: var(--white);
+        }
     }
 }
 </style>
