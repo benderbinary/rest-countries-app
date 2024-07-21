@@ -67,7 +67,7 @@ watch(isDarkMode, (newTheme) => {
     .dark-mode-toggle {
         background-color: transparent;
         border: none;
-        color: inherit;
+        color: var(--very-dark-blue-text) !important;
         cursor: pointer;
         font-family: var(--font-family);
         font-size: 0.9rem;
@@ -91,6 +91,10 @@ watch(isDarkMode, (newTheme) => {
         .logo {
             color: var(--white);
         }
+    }
+
+    .dark-mode-toggle {
+        color: var(--white) !important;
     }
 }
 </style>

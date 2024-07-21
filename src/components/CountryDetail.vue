@@ -2,7 +2,7 @@
     <Navbar />
     <div v-if="country" class="country-detail">
         <button class="back-button" @click="$router.back()">
-            <!-- <img src="@/assets/arrow-left.svg" alt="Back Arrow" /> --> Back
+            Back
         </button>
 
         <div class="country-content">
@@ -96,7 +96,7 @@ const borderName = (code: string) => {
         border: none;
         padding: 0;
         background-color: var(--white);
-        color: var(--text-color);
+        color: var(--very-dark-blue-text) !important;
         font-weight: var(--font-weight-regular);
         cursor: pointer;
         padding: 0.5rem 1rem;
@@ -197,7 +197,7 @@ const borderName = (code: string) => {
 
         .border-country-tag {
             background-color: var(--white);
-            color: var(--text-color);
+            color: var(--very-dark-blue-text);
             padding: 0.5rem 1rem;
             border-radius: 5px;
             text-decoration: none;
