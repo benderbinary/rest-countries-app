@@ -166,6 +166,7 @@ onUnmounted(() => {
         padding: 0.75rem 1rem;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        color: var(--very-dark-blue-text);
         font-family: var(--font-family);
         cursor: pointer;
         appearance: none;
