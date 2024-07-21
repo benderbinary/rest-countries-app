@@ -9,7 +9,7 @@
 
             <div class="select-wrapper" ref="selectWrapper">
                 <div class="custom-select" @click="toggleDropdown" :class="{ 'open': isOpen }">
-                    <span>{{ selectedRegion || 'Filter by Region' }}</span>
+                    <span class="select-item">{{ selectedRegion || 'Filter by Region' }}</span>
                     <font-awesome-icon :icon="['fas', 'chevron-down']" class="select-icon"
                         :class="{ 'rotated': isOpen }" />
                 </div>
@@ -131,13 +131,15 @@ onUnmounted(() => {
     position: relative;
     width: 200px;
 
+    .select-item {
+        margin-left: 1em;
+    }
+
     .custom-select {
         width: 100%;
         background-color: var(--white);
         border: none;
-        padding: 0.75rem 1.5rem;
-        padding-right: 2.5rem;
-        margin-left: -4rem;
+        padding: 0.75rem 0rem;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         font-family: var(--font-family);
@@ -154,6 +156,7 @@ onUnmounted(() => {
 
     .select-icon {
         transition: transform 0.3s ease;
+        margin-right: 1em;
 
         &.rotated {
             transform: rotate(180deg);

@@ -1,6 +1,13 @@
 <template>
-    <CountryDetail v-if="country" :country="country" :border-countries="borderCountriesData"
-        :key="(route.params.code as string)" />
+    <Suspense>
+        <template #default>
+            <CountryDetail v-if="country" :country="country" :border-countries="borderCountriesData"
+                :key="(route.params.code as string)" />
+        </template>
+        <template #fallback>
+            <div>loading</div>
+        </template>
+    </Suspense>
 </template>
 
 <script setup lang="ts">
