@@ -283,7 +283,7 @@ onUnmounted(() => {
     }
 }
 
-// Media queries for responsiveness
+// Media queries for responsiveness, 768px is habit - old measure for tablets
 @media (max-width: 768px) {
     .search-filter-container {
         flex-direction: column;
@@ -291,7 +291,7 @@ onUnmounted(() => {
     }
 
     .search-container {
-        width: 100%;
+        width: 950%;
         margin-bottom: 1rem;
     }
 

@@ -97,4 +97,14 @@ watch(isDarkMode, (newTheme) => {
         color: var(--white) !important;
     }
 }
+
+// Media queries for responsiveness
+@media (max-width: 768px) {
+    .navbar {
+        .logo {
+            font-weight: var(--font-weight-bold);
+            font-size: 0.9rem;
+        }
+    }
+}
 </style>
