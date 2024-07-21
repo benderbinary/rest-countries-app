@@ -75,7 +75,7 @@ const borderName = (code: string) => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .country-detail {
     display: flex;
     flex-direction: column;

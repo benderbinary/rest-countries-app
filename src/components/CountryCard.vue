@@ -29,10 +29,10 @@ const { country } = defineProps<{
 }>();
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .country-card {
-    background-color: var(--dark-blue-elements);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--dark-blue-elements);
     box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.03);
     border-radius: 5px;
 
@@ -64,16 +64,18 @@ const { country } = defineProps<{
     }
 }
 
-:root[data-theme='dark'] & {
-    background-color: var(--dark-blue-elements);
-    color: var(--white);
+[data-theme='dark'] {
+    .country-card {
+        background-color: var(--dark-blue-elements);
+        color: var(--white);
 
-    .country-info {
-        p {
-            color: var(--white);
-
-            span {
+        .country-info {
+            p {
                 color: var(--white);
+
+                span {
+                    color: var(--white);
+                }
             }
         }
     }
