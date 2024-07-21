@@ -31,7 +31,8 @@ const { country } = defineProps<{
 
 <style scoped>
 .country-card {
-    background-color: var(--white);
+    background-color: var(--dark-blue-elements);
+    color: var(--white);
     box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.03);
     border-radius: 5px;
 
@@ -64,17 +65,15 @@ const { country } = defineProps<{
 }
 
 :root[data-theme='dark'] & {
-    .country-card {
-        background-color: var(--dark-blue-elements);
-        color: var(--white);
+    background-color: var(--dark-blue-elements);
+    color: var(--white);
 
-        .country-info {
-            p {
+    .country-info {
+        p {
+            color: var(--white);
+
+            span {
                 color: var(--white);
-
-                span {
-                    color: var(--white);
-                }
             }
         }
     }

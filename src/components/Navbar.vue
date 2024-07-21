@@ -58,7 +58,24 @@ watch(isDarkMode, (newTheme) => {
 
     .back-button {
         margin-left: auto;
+    }
 
+    .dark-mode-toggle {
+        background-color: transparent;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        font-family: var(--font-family);
+        font-size: 0.9rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .fa-moon,
+        .fa-sun {
+            font-size: 1rem;
+        }
     }
 }
 
