@@ -1,6 +1,7 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import api from '@/services/api';
 import type { Country } from '@/types/types';
+import Fuse from "fuse.js";
 
 export const useCountriesStore = defineStore('countries', {
     state: () => ({
@@ -13,12 +14,16 @@ export const useCountriesStore = defineStore('countries', {
     getters: {
         filteredCountries: (state) => {
             let filtered = state.allCountries;
+
             if (state.searchQuery) {
-                const query = state.searchQuery.toLowerCase();
-                filtered = filtered.filter(country => country.name.toLowerCase().includes(query));
+                const fuse = new Fuse(filtered, { keys: ["name"], threshold: 0.4 });
+                filtered = fuse.search(state.searchQuery).map(result => result.item);
             }
+
             if (state.selectedRegion) {
-                filtered = filtered.filter(country => country.region === state.selectedRegion);
+                filtered = filtered.filter(
+                    (country) => country.region === state.selectedRegion
+                );
             }
             return filtered;
         },
