@@ -99,6 +99,11 @@ const borderName = (code: string) => {
         color: var(--text-color);
         font-weight: var(--font-weight-regular);
         cursor: pointer;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        width: 4rem;
 
         img {
             width: 20px;
