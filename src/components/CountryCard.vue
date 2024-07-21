@@ -62,4 +62,21 @@ const { country } = defineProps<{
         font-weight: var(--font-weight-light);
     }
 }
+
+:root[data-theme='dark'] & {
+    .country-card {
+        background-color: var(--dark-blue-elements);
+        color: var(--white);
+
+        .country-info {
+            p {
+                color: var(--white);
+
+                span {
+                    color: var(--white);
+                }
+            }
+        }
+    }
+}
 </style>
