@@ -291,7 +291,7 @@ onUnmounted(() => {
     }
 
     .search-container {
-        width: 950%;
+        width: 95%;
         margin-bottom: 1rem;
     }
 
