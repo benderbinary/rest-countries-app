@@ -1,53 +1,48 @@
 <template>
-  <Navbar />
-  <div v-if="country" class="country-detail">
-    <button class="back-button" @click="$router.back()">Back</button>
+  <div>
+    <Navbar />
+    <div v-if="country" class="country-detail" v-bind="$attrs">
+      <button class="back-button" @click="$router.back()">Back</button>
 
-    <div class="country-content">
-      <img :src="country.flags.png" alt="Country Flag" class="country-flag" />
-      <div class="country-details">
-        <h2>{{ country.name }}</h2>
-        <div class="detail-groups">
-          <div class="detail-group">
-            <p><strong>Native Name:</strong> {{ country.nativeName }}</p>
-            <p>
-              <strong>Population:</strong>
-              {{ country.population.toLocaleString() }}
-            </p>
-            <p><strong>Region:</strong> {{ country.region }}</p>
-            <p><strong>Sub Region:</strong> {{ country.subregion }}</p>
-            <p><strong>Capital:</strong> {{ country.capital }}</p>
+      <div class="country-content">
+        <img :src="country.flags.png" alt="Country Flag" class="country-flag" />
+        <div class="country-details">
+          <h2>{{ country.name }}</h2>
+          <div class="detail-groups">
+            <div class="detail-group">
+              <p><strong>Native Name:</strong> {{ country.nativeName }}</p>
+              <p>
+                <strong>Population:</strong>
+                {{ country.population.toLocaleString() }}
+              </p>
+              <p><strong>Region:</strong> {{ country.region }}</p>
+              <p><strong>Sub Region:</strong> {{ country.subregion }}</p>
+              <p><strong>Capital:</strong> {{ country.capital }}</p>
+            </div>
+            <div class="detail-group">
+              <p>
+                <strong>Top Level Domain:</strong>
+                {{ country.topLevelDomain.join(", ") }}
+              </p>
+              <p>
+                <strong>Currencies:</strong>
+                {{ country.currencies.map((c) => c.name).join(", ") }}
+              </p>
+              <p>
+                <strong>Languages:</strong>
+                {{ country.languages.map((l) => l.name).join(", ") }}
+              </p>
+            </div>
           </div>
-          <div class="detail-group">
-            <p>
-              <strong>Top Level Domain:</strong>
-              {{ country.topLevelDomain.join(", ") }}
-            </p>
-            <p>
-              <strong>Currencies:</strong>
-              {{ country.currencies.map((c) => c.name).join(", ") }}
-            </p>
-            <p>
-              <strong>Languages:</strong>
-              {{ country.languages.map((l) => l.name).join(", ") }}
-            </p>
-          </div>
-        </div>
 
-        <div
-          class="border-countries"
-          v-if="country.borders && country.borders.length > 0"
-        >
-          <h3>Border Countries:</h3>
-          <div class="border-country-tags">
-            <router-link
-              v-for="borderCode in country.borders"
-              :key="borderCode"
-              :to="{ name: 'CountryView', params: { code: borderCode } }"
-              class="border-country-tag"
-            >
-              {{ borderName(borderCode) }}
-            </router-link>
+          <div class="border-countries" v-if="country.borders && country.borders.length > 0">
+            <h3>Border Countries:</h3>
+            <div class="border-country-tags">
+              <router-link v-for="borderCode in country.borders" :key="borderCode"
+                :to="{ name: 'CountryView', params: { code: borderCode } }" class="border-country-tag">
+                {{ borderName(borderCode) }}
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -56,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import api from "@/services/api";
 import type { Country } from "@/types/types";
@@ -64,34 +59,49 @@ import Navbar from "@/components/Navbar.vue";
 
 const route = useRoute();
 const country = ref<Country | null>(null);
+const borderCountriesData = ref<Country[]>([]);
 
 onMounted(async () => {
   try {
     const response = await api.get(`/alpha/${route.params.code}`);
     country.value = response.data;
+    await fetchBorderCountries();
   } catch (error) {
     console.error("Error fetching country details:", error);
   }
 });
 
-const borderName = (code: string) => {
-  const borderCountriesData = ref<Country[]>([]);
-
-  onMounted(async () => {
-    if (country.value?.borders.length) {
+watch(
+  () => route.params.code,
+  async (newCode, oldCode) => {
+    if (newCode !== oldCode) {
       try {
-        const response = await api.get(
-          `/alpha?codes=${country.value.borders.join(",")}`,
-        );
-        borderCountriesData.value = response.data;
+        const response = await api.get(`/alpha/${newCode}`);
+        country.value = response.data;
+        await fetchBorderCountries();
       } catch (error) {
-        console.error("Error fetching border countries:", error);
+        console.error("Error fetching country details:", error);
       }
     }
-  });
-  const borderCountry = borderCountriesData.value.find(
-    (c) => c.alpha3Code === code,
-  );
+  }
+);
+
+const fetchBorderCountries = async () => {
+  if (country.value?.borders) {
+    try {
+      const response = await api.get(
+        `/alpha?codes=${country.value.borders.join(",")}`
+      );
+      borderCountriesData.value = response.data;
+    } catch (error) {
+      console.error("Error fetching border countries:", error);
+    }
+  }
+};
+
+
+const borderName = (code: string) => {
+  const borderCountry = borderCountriesData.value.find((c) => c.alpha3Code === code);
   return borderCountry ? borderCountry.name : code;
 };
 </script>

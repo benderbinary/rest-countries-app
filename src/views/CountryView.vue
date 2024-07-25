@@ -1,12 +1,8 @@
 <template>
   <Suspense>
     <template #default>
-      <CountryDetail
-        v-if="country"
-        :country="country"
-        :border-countries="borderCountriesData"
-        :key="route.params.code as string"
-      />
+      <CountryDetail v-if="country" :country="country" :border-countries="borderCountriesData"
+        :key="route.params.code as string" />
     </template>
     <template #fallback>
       <LoadingComponent />
@@ -44,7 +40,7 @@ watch(
         const response = await api.get(`/alpha/${newCode}`);
         country.value = response.data;
         await fetchBorderCountries(response.data.borders);
-      } catch (error) {}
+      } catch (error) { }
     }
   },
 );
