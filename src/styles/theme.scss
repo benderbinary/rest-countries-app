@@ -1,26 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap'); 
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 
 body {
   font-family: var(--font-family);
   background-color: var(--very-light-gray);
-  --font-family: 'Nunito Sans', sans-serif;
+  --font-family: "Nunito Sans", sans-serif;
   --font-weight-light: 300;
   --font-weight-regular: 600;
   --font-weight-bold: 800;
-  --homepage-item-size: 14px; 
+  --homepage-item-size: 14px;
   --dark-blue-elements: hsl(209, 23%, 22%);
   --very-dark-blue-background: hsl(207, 26%, 17%);
   --very-dark-blue-text: hsl(200, 15%, 8%);
   --dark-gray: hsl(0, 0%, 52%);
   --very-light-gray: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
-  transition: background-color 0.3s ease, color 0.3s ease; 
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   body {
     background-color: var(--very-dark-blue-background);
-    color: var(--white);  
+    color: var(--white);
   }
 }
 
